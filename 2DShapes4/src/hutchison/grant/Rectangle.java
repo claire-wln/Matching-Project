@@ -1,6 +1,6 @@
 package hutchison.grant;
 
-public class Rectangle<T> extends Shape2D  {
+public class Rectangle<T> extends Shape2D {
 	private double width;
 	private double height;
 	private double area;
@@ -21,6 +21,8 @@ public class Rectangle<T> extends Shape2D  {
 
 	@Override
 	public String toString() {
-		return String.format("Rectangle has width of %.1f, height of %.1f, and area of %.1f", width, height, area);
+		String out = String.format("Rectangle has width of %.1f, "
+				+ "height of %.1f, and area of %.1f", width, height, area);
+		return out;
 	}
 }

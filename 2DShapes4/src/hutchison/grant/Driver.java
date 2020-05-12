@@ -39,7 +39,6 @@ public class Driver {
 			shapes.add(new Rectangle(width, height));
 		}
 
-
 		System.out.println("List of Shapes");
 		System.out.println("++++++++++++++");
 		for (Shape2D s : shapes) {
