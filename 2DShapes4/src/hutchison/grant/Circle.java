@@ -1,6 +1,6 @@
 package hutchison.grant;
 
-public class Circle extends Shape2D<Circle> implements Comparable<Circle> {
+public class Circle extends Shape2D   {
 	private double radius;
 	private double area;
 
@@ -20,19 +20,6 @@ public class Circle extends Shape2D<Circle> implements Comparable<Circle> {
 	@Override
 	public String toString() {
 		return String.format("Circle has radius %.1f and area of %.1f", radius, area);
-	}
-
-	@Override
-	public int compareTo(Circle c) {
-		if (area>c.getArea()) {
-			return 1;
-		}
-		else if (area<c.getArea()) {
-			return -1;
-		}
-		return 0;
-
-	}
-	
+	}	
 
 }
