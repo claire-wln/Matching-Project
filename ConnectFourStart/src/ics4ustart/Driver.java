@@ -4,41 +4,53 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Text (console) based driver for testing purposes.
+ * @author Hutchison
+ *
+ */
 public class Driver {
 
 	public static void main(String[] args) {
 
 		// Setup constants for the Board
-		final int ROWS = 7;
+		final int ROWS = 6;
 		final int COLS = 7;
 
 		// create the board
 		Board board = new Board(ROWS, COLS);
 		board.display();
+		
+		// console input
 		Scanner in = new Scanner(System.in);
-
 		boolean done = false;
 		String value = "";
-
 		int column = 0;
 
 		while (!done) {
-			column = getColumn(in);
+			column = getColumn(in, 1, COLS); // include min and max
 			board.display();
 		}
 	}
-
-	private static int getColumn(Scanner in) {
+	
+/**
+ * Helper method to ensure column value is valid.
+ * @param in
+ * @return
+ */
+	private static int getColumn(Scanner in, int min, int max) {
 		boolean valid = false;
 		int column = 0;
+		
 		while (!valid) {
-			System.out.print("Which Column (1-7) :");
+			String prompt = String.format("Which column (%d,%d) :",min,max); 
+			System.out.print(prompt);
 			if (in.hasNextInt()) {
 				column = in.nextInt();
-				if (column >= 1 && column <= 7) {
+				if (column >= min && column <= max) {
 					valid = true;
 				} else {
-					System.out.println("Invalid range 1-7");
+					System.out.println("Invalid numeric value provided.");
 				}
 			} else {
 				System.out.println("Not a number.");
