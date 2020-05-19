@@ -31,6 +31,9 @@ public class Driver {
 		while (!done) {
 			column = getColumn(in, 1, COLS); // include min and max
 			board.placePiece(column, player);
+			
+			// Check for winners
+			
 			board.display();
 			if (player == CellState.P1) {
 				player = CellState.P2;
