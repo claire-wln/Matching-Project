@@ -22,7 +22,7 @@ public class MultiButton extends Application {
 		launch(args);
 	}
 	
-	private final double WIDTH = 600;
+	private final double WIDTH = 800;
 	private final double HEIGHT = 600;
 	private final int NUM_ROWS = 6;
 	private final int NUM_COLS = 7;
@@ -40,6 +40,13 @@ public class MultiButton extends Application {
 		for (int i = 0; i < NUM_ROWS; i++) {
 			for (int j = 0; j < NUM_COLS; j++) {
 					slots[i][j] = new NewButton(i,j);
+					slots[i][j].setMinSize(WIDTH/NUM_COLS, HEIGHT/NUM_ROWS);
+					slots[i][j].setMaxSize(WIDTH/NUM_COLS, HEIGHT/NUM_ROWS);
+					slots[i][j].setText(slots[i][j].toString());
+					slots[i][j].setOnAction(e ->{
+						System.out.println( ((NewButton) e.getSource()).getText() );
+						((NewButton) e.getSource()).setStyle("-fx-background-color: Red");
+					});
 			}
 		}
 		
