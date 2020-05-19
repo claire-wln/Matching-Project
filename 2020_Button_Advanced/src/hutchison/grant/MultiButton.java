@@ -17,39 +17,35 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class MultiButton extends Application {
-	private static final double BUTTON_WIDTH = 50;
-	private static final double BUTTON_HEIGHT = 50;
-	private static NewButton[][] slots = new NewButton[7][7];
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
-
+	private final double WIDTH = 600;
+	private final double HEIGHT = 600;
+	private final int NUM_ROWS = 6;
+	private final int NUM_COLS = 7;
+	
+	private NewButton[][] slots = new NewButton[NUM_ROWS][NUM_COLS];
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {				
+		
 		GridPane gridPane = new GridPane();		
-		Scene mySceneGraph = new Scene(gridPane,500,500);	
+		Scene mySceneGraph = new Scene(gridPane,WIDTH,HEIGHT);
 		gridPane.setAlignment(Pos.TOP_CENTER);
 		
-		// setup slots
-		for (int i = 0; i < 7; i++) {
-			for (int j = 0; j < 7; j++) {
+		// setup slots as NewButton objects
+		for (int i = 0; i < NUM_ROWS; i++) {
+			for (int j = 0; j < NUM_COLS; j++) {
 					slots[i][j] = new NewButton(i,j);
-					slots[i][j].setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-					slots[i][j].setStyle("-fx-base: #C0C0C0;");
-					slots[i][j].setText("[" + String.valueOf(i)+","+String.valueOf(j)+"]");
-
-					slots[i][j].setOnAction(new EventHandler<ActionEvent>() {
-			            @Override
-			            public void handle(ActionEvent event) {
-			            	System.out.println(((NewButton)event.getSource()).getRow());
-			            }
-			        });
+					slots[i][j].setMinSize(WIDTH/NUM_COLS, HEIGHT/NUM_ROWS);	
+					slots[i][j].setMaxSize(WIDTH/NUM_COLS, HEIGHT/NUM_ROWS);
 			}
 		}
 		
-		for (int i = 0; i < 7; i++) {
-			for (int j = 0; j < 7; j++) {
+		for (int i = 0; i < NUM_ROWS; i++) {
+			for (int j = 0; j < NUM_COLS; j++) {
 				gridPane.add(slots[i][j], j,i+1);
 			}
 		}
