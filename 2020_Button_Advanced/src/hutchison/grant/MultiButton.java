@@ -21,6 +21,7 @@ public class MultiButton extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
 	private final double WIDTH = 600;
 	private final double HEIGHT = 600;
 	private final int NUM_ROWS = 6;
@@ -39,8 +40,7 @@ public class MultiButton extends Application {
 		for (int i = 0; i < NUM_ROWS; i++) {
 			for (int j = 0; j < NUM_COLS; j++) {
 					slots[i][j] = new NewButton(i,j);
-					slots[i][j].setMinSize(WIDTH/NUM_COLS, HEIGHT/NUM_ROWS);	
-					slots[i][j].setMaxSize(WIDTH/NUM_COLS, HEIGHT/NUM_ROWS);
+					slots[i][j].setText(slots[i][j].toString());
 			}
 		}
 		
