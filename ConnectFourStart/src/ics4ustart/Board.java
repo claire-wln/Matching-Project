@@ -71,4 +71,9 @@ public class Board {
 			System.out.println();
 		}
 	}
+
+	public void placePiece(int column, CellState player) {
+		board[rows-1][column-1].setState(player);
+		
+	}
 }

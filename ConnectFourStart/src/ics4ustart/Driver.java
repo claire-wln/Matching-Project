@@ -26,10 +26,15 @@ public class Driver {
 		boolean done = false;
 		String value = "";
 		int column = 0;
-
+		CellState player = CellState.P1;
+			
 		while (!done) {
 			column = getColumn(in, 1, COLS); // include min and max
+			board.placePiece(column, player);
 			board.display();
+			if (player == CellState.P1) {
+				player = CellState.P2;
+			}
 		}
 	}
 	
