@@ -36,7 +36,7 @@ public class Driver {
 /**
  * Helper method to ensure column value is valid.
  * @param in
- * @return
+ * @return valid column number
  */
 	private static int getColumn(Scanner in, int min, int max) {
 		boolean valid = false;
