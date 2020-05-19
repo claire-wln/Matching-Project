@@ -40,7 +40,6 @@ public class MultiButton extends Application {
 		for (int i = 0; i < NUM_ROWS; i++) {
 			for (int j = 0; j < NUM_COLS; j++) {
 					slots[i][j] = new NewButton(i,j);
-					slots[i][j].setText(slots[i][j].toString());
 			}
 		}
 		
