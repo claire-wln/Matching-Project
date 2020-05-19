@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.TreeMap;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -81,9 +82,12 @@ public class DriverGUI extends Application {
 
 		Button btnRun = new Button("Run Simulation");
 
+		Button btnQuit = new Button("End Simulation");
+
+		
 		VBox input = new VBox(10);
 		input.setAlignment(Pos.CENTER);
-		input.getChildren().addAll(grid, btnRun);
+		input.getChildren().addAll(grid, btnRun, btnQuit);
 
 		// Create BorderPane and add nodes
 		BorderPane bp = new BorderPane();
@@ -94,6 +98,7 @@ public class DriverGUI extends Application {
 
 		BorderPane.setAlignment(lblTitle, Pos.TOP_CENTER);
 		BorderPane.setAlignment(lblErrorMessage, Pos.TOP_CENTER);
+		BorderPane.setMargin(input, new Insets(20));
 
 		// Create a scene, set the root Node and optional the dimensions
 		Scene scene = new Scene(bp, 1000, 400);
@@ -106,6 +111,8 @@ public class DriverGUI extends Application {
 		stage.show();
 		stage.setMaximized(true);
 
+		btnQuit.setOnAction(e-> Platform.exit());
+		
 		btnRun.setOnAction(e -> {
 			simulationHandler();
 			xAxis.setLabel("Sum");
