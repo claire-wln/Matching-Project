@@ -1,0 +1,16 @@
+.root{
+    -fx-font-size: 24pt;
+    -fx-font-family: "Arial";
+    -fx-base: rgb(132, 145, 47);
+    -fx-background: rgb(225, 228, 203);
+    
+}
+
+.text-field {
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+	-fx-alignment: CENTER_RIGHT;
+	-fx-min-height: 45;
+	-fx-min-height: 45;
+}
+
