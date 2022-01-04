@@ -54,7 +54,7 @@ public class GUIDriver extends Application {
 
 		btnFalse.setOnAction(event -> {
 			txtResult.setText("Try Again");
-			txtResult.setFill(Color.RED);
+			txtResult.setFill(Color.PINK);
 		} );
 		
 		// Add Node to the graph
