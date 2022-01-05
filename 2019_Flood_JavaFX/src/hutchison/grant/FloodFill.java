@@ -40,8 +40,8 @@ public class FloodFill extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		final int WIDTH = 600;
-		final int HEIGHT = 600;
+		final int WIDTH = 800;
+		final int HEIGHT = 800;
 		final int BUTTON_WIDTH = 100;
 		final int BUTTON_HEIGHT = (HEIGHT - 80) / ROWS;
 
