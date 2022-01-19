@@ -22,7 +22,7 @@ public class MultiButton extends Application {
 		launch(args);
 	}
 	
-	private final double WIDTH = 1000;
+	private final double WIDTH = 700;
 	private final double HEIGHT = 600;
 	private final int NUM_ROWS = 6;
 	private final int NUM_COLS = 7;
