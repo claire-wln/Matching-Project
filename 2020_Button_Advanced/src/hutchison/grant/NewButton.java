@@ -6,12 +6,17 @@ import javafx.scene.image.Image;
 public class NewButton extends Button {
 	private int row;
 	private int col;
+	public int state = 1;//1=facedown 2=flippedover 3=found(permanately flipped)
 	
 	public NewButton (int r, int c, String i){
 		super();
-		row = r;
+		row = r; 
 		col = c;
 		Image img = new Image(i);
+	}
+	
+	public void updateState(int n) {
+		state = n;
 	}
 	
 	public int getRow(){
@@ -19,6 +24,9 @@ public class NewButton extends Button {
 	}
 	public int getCol(){
 		return col;
+	}
+	public int getState() {
+		return state;
 	}
 	
 	@Override
