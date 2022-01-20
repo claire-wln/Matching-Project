@@ -31,6 +31,7 @@ public class Driver extends Application {
 	private final int NUM_ROWS = 4;
 	private final int NUM_COLS = 5;
 	int numCardsClicked = 0;
+	ArrayList <NewButton> buttons = new ArrayList<>();
 	
 	private NewButton[][] slots = new NewButton[NUM_ROWS][NUM_COLS];
 	
@@ -60,8 +61,7 @@ public class Driver extends Application {
 		Collections.shuffle(images);
 		
 		int imgVal = 0;
-		
-				
+						
 		// setup slots as NewButton objects
 		for (int i = 0; i < NUM_ROWS; i++) {
 			for (int j = 0; j < NUM_COLS; j++) {
@@ -74,11 +74,26 @@ public class Driver extends Application {
 							((NewButton) e.getSource()).setGraphic(view);
 							((NewButton) e.getSource()).updateState(2);
 							numCardsClicked++;
+							buttons.add((NewButton) e.getSource());
+							
 							if (numCardsClicked== 2) {
 								System.out.print("pair selected");
+								if (buttons.get(0).getName().equals(buttons.get(1).getName())) {
+									System.out.println("pair matched");
+									//deactivate buttons
+								} else {
+									buttons.get(0).updateState(1);
+									//change graphic
+									buttons.get(1).updateState(1);
+									buttons.clear();
+									
+								}
+							numCardsClicked=0;	
+								
 							}
 										
 						}
+						
 						
 						
 					});
