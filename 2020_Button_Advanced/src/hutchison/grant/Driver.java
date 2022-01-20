@@ -60,34 +60,50 @@ public class Driver extends Application {
 		}
 		Collections.shuffle(images);
 		
+		ImageView back = new ImageView("Presto_Card.png");
+		
 		int imgVal = 0;
+		int turnCount = 0;
 						
 		// setup slots as NewButton objects
 		for (int i = 0; i < NUM_ROWS; i++) {
 			for (int j = 0; j < NUM_COLS; j++) {
 					slots[i][j] = new NewButton(i,j,images.get(imgVal));
-					ImageView view = new ImageView(images.get(imgVal));
+					
+					ImageView front = new ImageView(images.get(imgVal));
+					
 					slots[i][j].setMinSize(WIDTH/NUM_COLS, HEIGHT/NUM_ROWS);
 					slots[i][j].setMaxSize(WIDTH/NUM_COLS, HEIGHT/NUM_ROWS);
+					slots[i][j].setGraphic(back);
+					
+					//when you click button
 					slots[i][j].setOnAction(e ->{
 						if (((NewButton) e.getSource()).getState() == 1 && numCardsClicked < 2) {
-							((NewButton) e.getSource()).setGraphic(view);
+							((NewButton) e.getSource()).setGraphic(front);
 							((NewButton) e.getSource()).updateState(2);
 							numCardsClicked++;
 							buttons.add((NewButton) e.getSource());
 							
-							if (numCardsClicked== 2) {
-								System.out.print("pair selected");
+							if (numCardsClicked == 2) {
+								
+								
+								
+								System.out.println("pair selected");
 								if (buttons.get(0).getName().equals(buttons.get(1).getName())) {
+									
 									System.out.println("pair matched");
 									//deactivate buttons
+									
 								} else {
+									
 									buttons.get(0).updateState(1);
-									//change graphic
+									buttons.get(0).setGraphic(back);
 									buttons.get(1).updateState(1);
+									buttons.get(1).setGraphic(back);
 									buttons.clear();
 									
 								}
+								
 							numCardsClicked=0;	
 								
 							}
