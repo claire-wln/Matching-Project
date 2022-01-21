@@ -15,7 +15,9 @@ public class NewButton extends Button {
 		row = r; 
 		col = c;
 		picName = i;
-		Image img = new Image(i);
+		Image img = new Image(i);  
+		
+		
 	}
 	
 	public void updateState(int n) {
