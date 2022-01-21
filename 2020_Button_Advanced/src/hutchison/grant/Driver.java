@@ -99,7 +99,8 @@ public class Driver extends Application {
 							
 							System.out.println("NO matched");
 						}
-
+						
+						refreshBoard();
 					}
 
 					
@@ -174,6 +175,9 @@ public class Driver extends Application {
 						ImageView front = new ImageView(slots[i][j].getName());
 						slots[i][j].setGraphic(front);
 					}
+				} else {
+					ImageView front = new ImageView(slots[i][j].getName());
+					slots[i][j].setGraphic(front);
 				}
 			}
 		}
