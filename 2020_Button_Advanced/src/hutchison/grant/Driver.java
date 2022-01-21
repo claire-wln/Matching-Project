@@ -26,14 +26,16 @@ public class Driver extends Application {
 		launch(args);
 	}
 	
-	private final double WIDTH = 700;
-	private final double HEIGHT = 800;
-	private final int NUM_ROWS = 4;
-	private final int NUM_COLS = 5;
+	private static final double WIDTH = 700;
+	private static final double HEIGHT = 800;
+	private static final int NUM_ROWS = 4;
+	private static final int NUM_COLS = 5;
 	int numCardsClicked = 0;
 	ArrayList <NewButton> buttons = new ArrayList<>();
 	
-	private NewButton[][] slots = new NewButton[NUM_ROWS][NUM_COLS];
+	static NewButton[][] slots = new NewButton[NUM_ROWS][NUM_COLS];
+	static ImageView back = new ImageView("Presto_Card.png");
+	static int pairsMatched = 0;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {				
@@ -59,18 +61,17 @@ public class Driver extends Application {
 			images.add("ThisCouldBeSofiasDogWhoKnows.png");
 		}
 		Collections.shuffle(images);
-		
-		ImageView back = new ImageView("Presto_Card.png");
-		
+				
 		int imgVal = 0;
 		int turnCount = 0;
-						
+								
 		// setup slots as NewButton objects
 		for (int i = 0; i < NUM_ROWS; i++) {
 			for (int j = 0; j < NUM_COLS; j++) {
 					slots[i][j] = new NewButton(i,j,images.get(imgVal));
 					
 					ImageView front = new ImageView(images.get(imgVal));
+					ImageView back = new ImageView("Presto_Card.png");
 					
 					slots[i][j].setMinSize(WIDTH/NUM_COLS, HEIGHT/NUM_ROWS);
 					slots[i][j].setMaxSize(WIDTH/NUM_COLS, HEIGHT/NUM_ROWS);
@@ -79,50 +80,78 @@ public class Driver extends Application {
 					//when you click button
 					slots[i][j].setOnAction(e ->{
 						if (((NewButton) e.getSource()).getState() == 1 && numCardsClicked < 2) {
+							
 							((NewButton) e.getSource()).setGraphic(front);
 							((NewButton) e.getSource()).updateState(2);
+							System.out.println(numCardsClicked);
 							numCardsClicked++;
 							buttons.add((NewButton) e.getSource());
 							
 							if (numCardsClicked == 2) {
-								
-								
-								
+										
 								System.out.println("pair selected");
 								if (buttons.get(0).getName().equals(buttons.get(1).getName())) {
 									
 									System.out.println("pair matched");
 									//deactivate buttons
+									buttons.get(0).setDisable(true);
+									buttons.get(1).setDisable(true);
+									pairsMatched++;
 									
-								} else {
-									
-									buttons.get(0).updateState(1);
-									buttons.get(0).setGraphic(back);
-									buttons.get(1).updateState(1);
-									buttons.get(1).setGraphic(back);
-									buttons.clear();
+									if (pairsMatched == 10) {
+										System.out.println("you win");
+										//add graphics ig
+									}
 									
 								}
-								
+							
+							try {
+								Thread.sleep(500);
+							} catch (InterruptedException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							
+							resetBoard();
+							buttons.clear();
 							numCardsClicked=0;	
 								
 							}
 										
-						}
-						
-						
+						}				
 						
 					});
+					
 					imgVal++;
 			}
 		}
-		
+					
 		for (int i = 0; i < NUM_ROWS; i++) {
 			for (int j = 0; j < NUM_COLS; j++) {
 				gridPane.add(slots[i][j], j,i+1);
 			}
 		}
 		primaryStage.setScene(mySceneGraph);
-		primaryStage.show();		
+		primaryStage.show();
+		
+	}
+	
+	private static void resetBoard() {
+		
+		for (int i = 0; i < NUM_ROWS; i++) {
+			for (int j = 0; j < NUM_COLS; j++) {
+				
+				ImageView back = new ImageView("Presto_Card.png");
+				
+				if (!slots[i][j].isDisabled()) {
+					
+					slots[i][j].updateState(1);
+					slots[i][j].setGraphic(back);
+					
+				}
+					
+			}
+		}
+		
 	}
 }
