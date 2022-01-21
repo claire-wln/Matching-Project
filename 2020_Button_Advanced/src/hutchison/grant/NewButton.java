@@ -7,7 +7,8 @@ public class NewButton extends Button {
 	private int row;
 	private int col;
 	private String picName;
-	public int state = 1;//1=facedown 2=flippedover 3=found(permanately flipped)
+	private int state = 1;//1=facedown 2=flippedover 3=found(permanately flipped)
+	private Image img;
 	
 	public NewButton (int r, int c, String i){
 		super();
@@ -36,6 +37,10 @@ public class NewButton extends Button {
 	public String getName() {
 		return picName;
 	}
+	public Image getImage() {
+		return img;
+	}
+	
 	
 	@Override
 	public String toString(){
