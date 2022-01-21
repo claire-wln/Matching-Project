@@ -26,8 +26,8 @@ public class Driver extends Application {
 		launch(args);
 	}
 
-	private static final double WIDTH = 600;
-	private static final double HEIGHT = 600;
+	private static final double WIDTH = 700;
+	private static final double HEIGHT = 800;
 	private static final int NUM_ROWS = 4;
 	private static final int NUM_COLS = 5;
 	static int numCardsClicked = 0;
@@ -56,6 +56,18 @@ public class Driver extends Application {
 
 				// when you click button
 				slots[i][j].setOnAction(e -> {
+					
+					if (numCardsClicked == 2) {
+						buttons.get(0).updateState(1);
+						buttons.get(1).updateState(1);
+						buttons.clear();
+						numCardsClicked = 0;
+						System.out.println("reached numcards of 2");
+						
+					}
+					refreshBoard();
+					System.out.println(((NewButton) e.getSource()).getState());
+					
 					if (((NewButton) e.getSource()).getState() == 1 && numCardsClicked == 0) {
 
 						((NewButton) e.getSource()).updateState(2);
@@ -90,11 +102,8 @@ public class Driver extends Application {
 
 					}
 
-					if (numCardsClicked == 2) {
-						buttons.clear();
-						numCardsClicked = 0;
-						System.out.println("reached numcards of 2");
-					}
+					
+					
 					refreshBoard();
 				});
 
@@ -142,25 +151,30 @@ public class Driver extends Application {
 
 				slots[i][j].setGraphic(back);
 				slots[i][j].updateState(1);
+				
+				System.out.println("state: "+ slots[i][j].getState() + " at " + slots[i][j]);
+				
+				imgVal++;
 			}
 
-			imgVal++;
+			
 		}
 
 	}
 
 	public void refreshBoard() {
+		
 		for (int i = 0; i < NUM_ROWS; i++) {
 			for (int j = 0; j < NUM_COLS; j++) {
-				if (slots[i][j].getState() == 1) {
-					ImageView back = new ImageView("Presto_Card.png");
-					slots[i][j].setGraphic(back);
-				} else if (slots[i][j].getState() == 2) {
-					Image image = slots[i][j].getImage();
-					ImageView front = new ImageView(image);
-					slots[i][j].setGraphic(front);
+				if (!slots[i][j].isDisabled()){
+					if (slots[i][j].getState() == 1) {
+						ImageView back = new ImageView("Presto_Card.png");
+						slots[i][j].setGraphic(back);
+					} else if (slots[i][j].getState() == 2) {
+						ImageView front = new ImageView(slots[i][j].getName());
+						slots[i][j].setGraphic(front);
+					}
 				}
-
 			}
 		}
 	}
