@@ -56,24 +56,30 @@ public class Driver extends Application {
 		//title and score stuff
 		Text space = new Text("");
 		Text title = new Text("");
-		title.setFont(Font.font("Comic Sans MS", 30));
+		title.setFont(Font.font("Comic Sans MS", 25));
 		title.setFill(Color.WHITE);
 		title.setText("SUPER MEGA MATCHING CARD GAME EXTRAORDINAIRE PRO +");
 		main.getChildren().addAll(space, title);
 		//heyyyyyyyyyyyyyy
 		GridPane gridPane = new GridPane();
-		Scene mySceneGraph = new Scene(main,WIDTH+100,HEIGHT+100);
+		Scene mySceneGraph = new Scene(main,WIDTH+500,HEIGHT+100);
 		main.getChildren().add(gridPane);
 		gridPane.setAlignment(Pos.CENTER);
 
 		//SCORE STUFF
 		VBox score = new VBox();
-		main.setAlignment(Pos.BOTTOM_LEFT);
 
 		Text CurrentScore = new Text("Turns Taken: " );
-		CurrentScore.setFont(Font.font("Comic Sans MS", 29));
+		CurrentScore.setFont(Font.font("Comic Sans MS", 25));
 		CurrentScore.setFill(Color.WHITE);
-		main.getChildren().add(CurrentScore);
+		main.getChildren().add(score);
+		score.getChildren().add(CurrentScore);
+		score.setAlignment(Pos.BOTTOM_LEFT);
+		
+		//win stuff
+		Text youWin = new Text("");
+		youWin.setFont(Font.font("Comic Sans MS", 25));
+		youWin.setFill(Color.WHITE);
 		
 		setBoard();
 
@@ -123,7 +129,10 @@ public class Driver extends Application {
 
 							if (pairsMatched == 10) {
 								System.out.println("you win");
-								// add graphics ig
+								// graphics
+								main.getChildren().clear();
+								youWin.setText("You win!! score: " + turnsTaken);
+								main.getChildren().add(youWin);
 							}
 
 						} else { 
